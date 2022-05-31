@@ -1,13 +1,28 @@
-const listaBombe = [];
-let punti = 0;
 
-for (let i = 0; i < 16; i++) {
-  const randomNumber = Math.floor(Math.random() * Grid) + 1;
-  if (listaBombe.indexOf(randomNumber)) {
-      listaBombe.push(randomNumber);
+let punti = 0;
+const listaBombe = [];
+for (let n=1, j=16; n<=j; n++) {
+  let numerobomba = Math.round(Math.random() * 100);
+      if (!listaBombe.includes(numerobomba)) {
+          listaBombe.push(numerobomba);
   }
+} console.log(listaBombe);
+
+//return difficoltà
+const difficolta = document.getElementById("difficulty");
+function selectDifficulty() {
+  return difficolta.value;
 }
 
+//difficoltà play button
+const play = document.getElementById("play");
+play.addEventListener("click", function () {
+  const getDifficolta = selectDifficulty();
+  if (getDifficolta === "easy") createGrid(7, 7);
+  else if (getDifficolta === "normal") createGrid(9, 9);
+  else createGrid(10, 10);
+});
+const 
 //crea griglia
 function createGrid(Col, Row) {
   //dimensioni 50 x Col
@@ -24,25 +39,18 @@ function createGrid(Col, Row) {
     campoMinato.append(cell);
     //cell index
     cell.innerText = `${i}`;
-
+  }
     //click cella
     cell.addEventListener("click", function () {
-      cell.classList.add("clicked");
+      console.log(this.innerText);
+      if (listaBombe.includes(this.innerText)) {
+        cell.classList.add("bomb");
+        alert("hai perso");
+        campoMinato.innerHTML = "";
+      } else {
+        punti = punti + 1;
+        cell.classList.add("clicked");
+      }
     });
-  }
+  
 }
-
-//return difficoltà
-const difficolta = document.getElementById("difficulty");
-function selectDifficulty() {
-  return difficolta.value;
-}
-
-//difficoltà play button
-const play = document.getElementById("play");
-play.addEventListener("click", function () {
-  const getDifficolta = selectDifficulty();
-  if (getDifficolta === "easy") createGrid(7, 7);
-  else if (getDifficolta === "normal") createGrid(9, 9);
-  else createGrid(10, 10);
-});
