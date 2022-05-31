@@ -22,20 +22,36 @@ function createGrid(Col, Row) {
   }
 }
 
-//return difficoltà
-const difficolta = document.getElementById("difficulty");
-function selectDifficulty() {
-  return difficolta.value;
-}
 
 //difficoltà play button
 const play = document.getElementById("play");
 play.addEventListener("click", function () {
-  const getDifficolta = selectDifficulty();
-  if (getDifficolta === "easy") createGrid(7, 7);
-  else if (getDifficolta === "normal") createGrid(9, 9);
-  else createGrid(10, 10);
+  createGrid(10, 10);
 });
+
+//
+
+//genero array 16 numeri casuali da 1 a 100 no repeat
+function generateBombs() {
+  const bombsList = [];
+
+  while (bombsList.length < 16) {
+    const randomNumber = getRandomNumber(1, 100);
+    {
+      if (!bombsList.includes(randomNumber)) {
+        bombsList.push(randomNumber);
+
+      }
+    }
+  }        console.log(randomNumber);
+
+  console.log(bombsList);
+}
+//se clicco uno di quei numeri nella lista partita finita
+
+//comunica punteggio
+
+//utente clicca tutti numeri blu finisce
 
 // switch(selectDifficulty()) {
 //     case getDifficolta === "easy":
