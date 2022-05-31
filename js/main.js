@@ -1,3 +1,13 @@
+const listaBombe = [];
+let punti = 0;
+
+for (let i = 0; i < 16; i++) {
+  const randomNumber = Math.floor(Math.random() * Grid) + 1;
+  if (listaBombe.indexOf(randomNumber)) {
+      listaBombe.push(randomNumber);
+  }
+}
+
 //crea griglia
 function createGrid(Col, Row) {
   //dimensioni 50 x Col
@@ -22,45 +32,17 @@ function createGrid(Col, Row) {
   }
 }
 
+//return difficoltà
+const difficolta = document.getElementById("difficulty");
+function selectDifficulty() {
+  return difficolta.value;
+}
 
 //difficoltà play button
 const play = document.getElementById("play");
 play.addEventListener("click", function () {
-  createGrid(10, 10);
+  const getDifficolta = selectDifficulty();
+  if (getDifficolta === "easy") createGrid(7, 7);
+  else if (getDifficolta === "normal") createGrid(9, 9);
+  else createGrid(10, 10);
 });
-
-//
-
-//genero array 16 numeri casuali da 1 a 100 no repeat
-function generateBombs() {
-  const bombsList = [];
-
-  while (bombsList.length < 16) {
-    const randomNumber = getRandomNumber(1, 100);
-    {
-      if (!bombsList.includes(randomNumber)) {
-        bombsList.push(randomNumber);
-
-      }
-    }
-  }        console.log(randomNumber);
-
-  console.log(bombsList);
-}
-//se clicco uno di quei numeri nella lista partita finita
-
-//comunica punteggio
-
-//utente clicca tutti numeri blu finisce
-
-// switch(selectDifficulty()) {
-//     case getDifficolta === "easy":
-//         createGrid(7, 7)
-//       break;
-//     case (getDifficolta === "medium"):
-//         createGrid(9, 9)
-//       break;
-//     case (getDifficolta === "hard"):
-//         createGrid(10, 10)
-//         break;
-//   }})
