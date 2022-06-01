@@ -22,7 +22,7 @@ play.addEventListener("click", function () {
   else if (getDifficolta === "normal") createGrid(9, 9);
   else createGrid(10, 10);
 });
-const 
+
 //crea griglia
 function createGrid(Col, Row) {
   //dimensioni 50 x Col
